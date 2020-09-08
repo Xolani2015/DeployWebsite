@@ -1,0 +1,124 @@
+﻿@model WebApplication.Models.Trip
+
+@{
+    ViewData["Title"] = "TRIPS";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<script>
+    function SelectDriverType() {
+        var selec = document.getElementById("DriverTypeId");
+        var dis = selec.options[selec.selectedIndex].text;
+        document.getElementById("mytext").value = dis;
+    }
+
+    function SelectGender() {
+        document.getElementsByName('radio1')
+            .forEach(radio => {
+                if (radio.checked) {
+                    document.getElementById("inGender").value = radio.value;
+                }
+            });
+    }</script>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- /.col -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a  asp-action="List" class="nav-link">Activity</a></li>
+                            <li class="nav-item"><a class="btn btn-warning">Add</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#update" data-toggle="tab">Reports</a></li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="update">
+                                <!-- Post -->
+                                <div class="card card-warning">
+                                    <div class="card-header">
+                                        <h3 class="card-title">ADD TRIP</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+
+                                    <div class="card-body">
+                                        <form role="form" asp-action="AddTrip">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <!-- select -->
+                                                    <div class="form-group">
+                                                        <label asp-for="PickUpArea" class="control-lable"></label>
+                                                        <input type="text" asp-for="PickUpArea" class="form-control" placeholder="Enter Name">
+                                                        <span asp-validation-for="PickUpArea" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <!-- select -->
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label asp-for="DropOffArea" class="control-lable"></label>
+                                                            <input type="text" asp-for="DropOffArea" class="form-control" placeholder="Enter Name">
+                                                            <span asp-validation-for="DropOffArea" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label asp-for="ArrivalTime" class="control-lable"></label>
+                                                        <input type="text" asp-for="ArrivalTime" class="form-control" placeholder="Enter Name">
+                                                        <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label asp-for="DepartureTime" class="control-lable"></label>
+                                                        <input type="text" asp-for="DepartureTime" class="form-control" placeholder="Enter Name">
+                                                        <span asp-validation-for="DepartureTime" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label class="control-lable">Actions</label>
+                                                        <br />
+                                                        <input type="submit" value="Create" class="btn btn-warning" />
+                                                        <a   asp-action="List" class="btn btn-primary">Back To list </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- Post -->
+                                <!-- /.post -->
+                            </div>
+                            <!-- /.tab-pane -->
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+        </div>
+        <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+</section>
+
+

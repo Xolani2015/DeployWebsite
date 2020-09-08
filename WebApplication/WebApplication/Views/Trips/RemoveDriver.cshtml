@@ -1,0 +1,38 @@
+﻿@model WebApplication.Models.Trip
+
+@{
+    ViewData["Title"] = "Remove Driver";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h3>Do you want to remove Mr @Model.Name @Model.Surname as the driver for Trip #@Model.id ?</h3>
+
+<form role="form" asp-action="RemoveDriver">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- select -->
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => Model.id)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.id)
+                </dd>
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <input type="submit" value="Confirm" asp-route-id="@Model.id" class="btn btn-success" />
+    <a asp-area="" asp-controller="Drivers" asp-action="List" class="btn btn-primary">Drivers</a>
+</form>
+<div>
+    <hr />
+</div>
+

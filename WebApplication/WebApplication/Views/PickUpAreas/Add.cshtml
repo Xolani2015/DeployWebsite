@@ -1,0 +1,94 @@
+﻿@model WebApplication.Models.PickUpAreaModel
+<!-- general form elements disabled -->
+
+<script>
+
+    function SelectPickArea() {
+        var selec = document.getElementById("PickUpId");
+        var dis = selec.options[selec.selectedIndex].text;
+        document.getElementById("mytext").value = dis;
+    }
+
+    function SelectDropOffArea() {
+        var selec = document.getElementById("DropOffId");
+        var dis = selec.options[selec.selectedIndex].text;
+        document.getElementById("mytext2").value = dis;
+    }
+
+    function SelectGender() {
+        document.getElementsByName('radio1')
+            .forEach(radio => {
+                if (radio.checked) {
+                    document.getElementById("inGender").value = radio.value;
+                }
+            });
+    }</script>
+
+
+<div class="card card-blue">
+    <div class="card-header">
+        <h3 class="card-title">ADD TRIP</h3>
+    </div>
+    <!-- /.card-header -->
+
+    <div class="card-body">
+        <form role="form" asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- select -->
+                    <div class="form-group">
+                        <label>Pick of Location</label>
+                        <select class="form-control" asp-for="PickUpArea" id="PickUpId" onchange="SelectPickArea();">
+                            <option>Alexandra</option>
+                            <option>Vosloorus</option>
+                            <option>Spruit-View</option>
+                            <option>Soshanguve</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label asp-for="TimeArrival" class="control-lable"></label>
+                        <input type="text" asp-for="TimeArrival" class="form-control" placeholder="Enter Name">
+                        <span asp-validation-for="TimeArrival" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label asp-for="TimeDepature" class="control-lable"></label>
+                        <input type="text" asp-for="TimeDepature" class="form-control" placeholder="Enter Name">
+                        <span asp-validation-for="TimeDepature" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label class="control-lable">Actions</label>
+                        <br />
+                        <input type="submit" value="Create" class="btn btn-success" />
+                        <a asp-action="Index" class="btn btn-primary">&lt;&lt; Back</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label asp-for="DriverID" class="control-lable"></label>
+                        <input type="number" asp-for="DriverID" class="form-control" placeholder="Enter Name">
+                        <span asp-validation-for="DriverID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- /.card-body -->
+</div>
+

@@ -1,0 +1,65 @@
+﻿@model WebApplication.Models.Passenger
+<!-- general form elements disabled -->
+
+<script>function SelectPickArea() {
+        var selec = document.getElementById("PickUpId");
+        var dis = selec.options[selec.selectedIndex].text;
+        document.getElementById("mytext").value = dis;
+    }
+
+    function SelectDropOffArea() {
+        var selec = document.getElementById("DropOffId");
+        var dis = selec.options[selec.selectedIndex].text;
+        document.getElementById("mytext2").value = dis;
+    }
+
+    function SelectGender() {
+        document.getElementsByName('radio1')
+            .forEach(radio => {
+                if (radio.checked) {
+                    document.getElementById("inGender").value = radio.value;
+                }
+            });
+    }</script>
+
+
+<div class="card card-blue">
+    <div class="card-header">
+        <h3 class="card-title">ADD TRIP</h3>
+    </div>
+    <!-- /.card-header -->
+
+    <div class="card-body">
+        <form role="form" asp-action="AssignToTrip">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- select -->
+                    <div class="form-group">
+                        <label asp-for="PickUpArea" class="control-lable"></label>
+                        <input type="text" asp-for="PickUpArea" class="form-control" placeholder="Enter Name">
+                        <span asp-validation-for="PickUpArea" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <!-- select -->
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label asp-for="DropOffArea" class="control-lable"></label>
+                            <input type="text" asp-for="DropOffArea" class="form-control" placeholder="Enter Name">
+                            <span asp-validation-for="DropOffArea" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <form asp-action="AssignToTrip">
+            <input type="hidden" asp-for="id"/>
+            <a asp-action="Profile" asp-route-id="id" class="btn btn-sm btn-info">Profile</a>
+        </form>
+    </div>
+    <!-- /.card-body -->
+</div>
+

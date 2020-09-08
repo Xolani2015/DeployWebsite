@@ -1,0 +1,120 @@
+﻿@model WebApplication.Models.Trip
+
+<!-- general form elements disabled -->
+
+<script>
+
+    function SelectPickArea() {
+        var selec = document.getElementById("PickUpId");
+        var dis = selec.options[selec.selectedIndex].text;
+        document.getElementById("mytext").value = dis;
+    }
+
+    function SelectDropOffArea() {
+        var selec = document.getElementById("DropOffId");
+        var dis = selec.options[selec.selectedIndex].text;
+        document.getElementById("mytext2").value = dis;
+    }
+
+    function SelectGender() {
+        document.getElementsByName('radio1')
+            .forEach(radio => {
+                if (radio.checked) {
+                    document.getElementById("inGender").value = radio.value;
+                }
+            });
+    }</script>
+
+
+<div class="card card-success">
+    <div class="card-header">
+        <h3 class="card-title">ADD TRIP</h3>
+    </div>
+    <!-- /.card-header -->
+
+    <div class="card-body">
+        <form role="form" asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- select -->
+                    <div class="form-group">
+                        <label>Pick of Location</label>
+                        <select class="form-control" asp-for="PickUpArea" id="PickUpId">
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <!-- select -->
+                    <div class="form-group">
+                        <label>Pick of Location</label>
+                        <select class="form-control" asp-for="DropOffArea" id="PickUpId" onchange="SelectPickArea();">
+                            <option>Sandton</option>
+                            <option>Pretoria</option>
+                            <option>AucklandPark</option>
+                            <option>Alberton</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- text input -->
+                    <label>Select Driver</label>
+                    <select class="form-control" asp-for="Name" id="PickUpId" onchange="SelectPickArea();">
+                        <option>Mpho Suping</option>
+                        <option>Lindo Chale</option>
+                        <option>John June</option>
+                        <option>Vusi Nkomo</option>
+                        <option>Xoli Mahlangu</option>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label asp-for="ArrivalTime" class="control-lable"></label>
+                        <input type="text" asp-for="ArrivalTime" class="form-control" placeholder="Enter Name">
+                        <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label asp-for="DepartureTime" class="control-lable"></label>
+                        <input type="text" asp-for="DepartureTime" class="form-control" placeholder="Enter Name">
+                        <span asp-validation-for="DepartureTime" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label class="control-lable">Actions</label>
+                        <br />
+                        <input type="submit" value="Create" class="btn btn-success" />
+                        <a asp-action="Index" class="btn btn-primary">&lt;&lt; Back</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label asp-for="Bill" class="control-lable"></label>
+                        <input type="text" asp-for="Bill" class="form-control" placeholder="Enter Name">
+                        <span asp-validation-for="Bill" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- /.card-body -->
+</div>
+

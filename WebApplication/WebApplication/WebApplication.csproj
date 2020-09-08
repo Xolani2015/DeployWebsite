@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\images\avatar.png" />
+    <Content Remove="wwwroot\images\user1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\avatar.png" />
+    <None Include="wwwroot\images\avatar04.png" />
+    <None Include="wwwroot\images\avatar2.png" />
+    <None Include="wwwroot\images\avatar3.png" />
+    <None Include="wwwroot\images\logos.jpg" />
+    <None Include="wwwroot\images\user1.jpg" />
+    <None Include="wwwroot\StyleSheet.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CustomImages\" />
+  </ItemGroup>
+
+
+
+</Project>

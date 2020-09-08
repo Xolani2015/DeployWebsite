@@ -1,0 +1,165 @@
+﻿@model WebApplication.Models.Trip
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<script>
+    function SelectDriverType() {
+        var selec = document.getElementById("DriverTypeId");
+        var dis = selec.options[selec.selectedIndex].text;
+        document.getElementById("mytext").value = dis;
+    }
+
+    function SelectGender() {
+        document.getElementsByName('radio1')
+            .forEach(radio => {
+                if (radio.checked) {
+                    document.getElementById("inGender").value = radio.value;
+                }
+            });
+    }</script>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <h3 class="profile-username text-center"> AREA #@Model.PickUpAreaID</h3>
+                        <p class="text-muted text-center">@Model.PickUpArea</p>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Linked with</b> <a class="float-right">5 Trips</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Routes</b> <a class="float-right">5</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <h3 class="profile-username text-center"> AREA #@Model.DropOffAreaID</h3>
+                        <p class="text-muted text-center">@Model.DropOffArea</p>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Linked with</b> <a class="float-right">5 Trips</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Routes</b> <a class="float-right">5</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- About Me Box -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title"> Trip @Model.id</h3>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a asp-action="Details" asp-route-id="@Model.id" class="nav-link">Activity</a></li>
+                            <li class="nav-item"><a asp-action="Driver" asp-route-id="@Model.id" class="nav-link active">Driver</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#update" data-toggle="tab">Reports</a></li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="update">
+                                <!-- Post -->
+                                <div class="card card-blue">
+                                    <div class="card-header">
+                                        <h3 class="card-title">TRIP @Model.id</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body" style="background-color:white">
+                                        <div class="row">
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-4">
+                                                        <div class="info-box bg-light">
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text text-center text-muted">Date Account </span>
+                                                                <span class="info-box-number text-center text-muted mb-0">05/02/2020</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-4">
+                                                        <div class="info-box bg-light">
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text text-center text-muted">Added by</span>
+                                                                <span class="info-box-number text-center text-muted mb-0">Admin 1</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-4">
+                                                        <div class="info-box bg-light">
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text text-center text-muted">Last modified</span>
+                                                                <span class="info-box-number text-center text-muted mb-0">05/04/2020<span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </br>
+                                                <div class="row">
+                                                    <form role="form" asp-action="Assign">
+                                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <!-- select -->
+                                                                <div class="form-group">
+                                                                    <label>Enter the name of the new driver</label>
+                                                                    <input type="text" asp-for="Name" class="form-control" placeholder="Enter Name">
+                                                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <input type="submit" value="Assign driver" asp-route-id="@Model.id" class="btn btn-success" />
+                                                        <a asp-area="" asp-controller="Drivers" asp-action="List" class="btn btn-primary">Drivers</a>
+                                                        
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- Post -->
+                                <!-- /.post -->
+                            </div>
+
+                            <!-- /.tab-pane -->
+                        </div>
+                        <!-- /.tab-content -->
+                    </div><!-- /.card-body -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+

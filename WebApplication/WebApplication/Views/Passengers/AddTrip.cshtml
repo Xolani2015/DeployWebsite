@@ -1,0 +1,186 @@
+﻿@model WebApplication.Models.Passenger
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<script>
+    function SelectDriverType() {
+        var selec = document.getElementById("DriverTypeId");
+        var dis = selec.options[selec.selectedIndex].text;
+        document.getElementById("mytext").value = dis;
+    }
+
+    function SelectGender() {
+        document.getElementsByName('radio1')
+            .forEach(radio => {
+                if (radio.checked) {
+                    document.getElementById("inGender").value = radio.value;
+                }
+            });
+    }</script>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle"
+                                 src="~/images/user1.jpg"
+                                 alt="User profile picture">
+                        </div>
+                        <h3 class="profile-username text-center"> @Html.DisplayFor(model => model.Name)  @Html.DisplayFor(model => model.Surname)</h3>
+                        <p class="text-muted text-center">Passenger @Model.id </p>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Trips Completed</b> <a class="float-right">204 Trips</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Amount Due</b> <a class="float-right">R543.00</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Ratings</b> <a class="float-right">3/10 Stars</a>
+                            </li>
+                        </ul>
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="id" />
+                            <input type="submit" style="width:180px" value="UPDATE" class="btn btn-success" />
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- About Me Box -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Passenger</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <strong><i class="fas fa-book mr-1"></i> detail submitted</strong>
+                        <p class="text-muted">
+                            Documents recieved
+                        </p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                        <p class="text-muted">Johanesburg</p>
+                        <hr>
+                        <strong><i class="fas fa-pencil-alt mr-1"></i> Passenger Rating</strong>
+                        <p class="text-muted">
+                            <span class="tag tag-danger">****</span>
+                            <span class="tag tag-success">*****</span>
+                        </p>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link active" href="#update" data-toggle="tab">Activity</a></li>
+                            @if (Model.Assigned == 0)
+                            {
+
+                                <li class="nav-item"><a asp-action="TripNotFound" asp-route-id="@Model.id" class="nav-link">Trip</a></li>
+                            }
+                            @if (Model.Assigned == 1)
+                            {
+
+                                <li class="nav-item"><a asp-action="Trip" asp-route-id="@Model.id" class="nav-link">Trip</a></li>
+                            }
+                            <li class="nav-item"><a class="nav-link" href="#update" data-toggle="tab">Reports</a></li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="update">
+                                <!-- Post -->
+                                <div class="card card-blue">
+                                    <div class="card-header">
+                                        <h3 class="card-title">ADD A TRIP FOR PASSENGER #@Model.id</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <form role="form" asp-action="AddTrip">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <!-- select -->
+                                                    <div class="form-group">
+                                                        <label asp-for="PickUpArea" class="control-lable"></label>
+                                                        <input type="text" asp-for="PickUpArea" class="form-control" placeholder="Pick Up Town">
+                                                        <span asp-validation-for="PickUpArea" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <!-- select -->
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label asp-for="DropOffArea" class="control-lable"></label>
+                                                            <input type="text" asp-for="DropOffArea" class="form-control" placeholder="Drop Off Town">
+                                                            <span asp-validation-for="DropOffArea" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <!-- select -->
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label asp-for="ArrivalTime" class="control-lable"></label>
+                                                            <input type="text" asp-for="ArrivalTime" class="form-control" placeholder="Arrival Time">
+                                                            <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <!-- select -->
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label asp-for="DepartureTime" class="control-lable"></label>
+                                                            <input type="text" asp-for="DepartureTime" class="form-control" placeholder="Departure Time">
+                                                            <span asp-validation-for="DepartureTime" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <input type="submit" value="Add Trip" asp-route-id="@Model.id" class="btn btn-sm btn-warning" />
+                                            <a asp-area="" asp-controller="Trips" asp-action="List" class="btn btn-sm btn-info">Available Trips</a>
+                                            <a asp-action="Profile" asp-route-id="@Model.id" class="btn btn-sm btn-danger"> Cancel</a>
+                                        </form>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- Post -->
+                                <!-- /.post -->
+                            </div>
+
+                            <!-- /.tab-pane -->
+                        </div>
+                        <!-- /.tab-content -->
+                    </div><!-- /.card-body -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+

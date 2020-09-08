@@ -1,0 +1,177 @@
+﻿@model WebApplication.Models.Trip
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<script>
+    function SelectDriverType() {
+        var selec = document.getElementById("DriverTypeId");
+        var dis = selec.options[selec.selectedIndex].text;
+        document.getElementById("mytext").value = dis;
+    }
+
+    function SelectGender() {
+        document.getElementsByName('radio1')
+            .forEach(radio => {
+                if (radio.checked) {
+                    document.getElementById("inGender").value = radio.value;
+                }
+            });
+    }</script>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <!-- Profile Image -->
+                <div class="card card-warning card-outline">
+                    <div class="card-body box-profile">
+                        <h3 class="profile-username text-center"> AREA #@Model.PickUpAreaID</h3>
+                        <p class="text-muted text-center">@Model.PickUpArea</p>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Linked with</b> <a class="float-right">5 Trips</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Routes</b> <a class="float-right">5</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+
+                <!-- Profile Image -->
+                <div class="card card-warning card-outline">
+                    <div class="card-body box-profile">
+                        <h3 class="profile-username text-center"> AREA #@Model.DropOffAreaID</h3>
+                        <p class="text-muted text-center">@Model.DropOffArea</p>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Linked with</b> <a class="float-right">5 Trips</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Routes</b> <a class="float-right">5</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="btn btn-warning" asp-action="Details" asp-route-id="@Model.id">Activity</a></li>
+                             <li class="nav-item"><a asp-action="Driver" asp-route-id="@Model.id" class="nav-link">Driver</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#update" data-toggle="tab">Reports</a></li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="update">
+                                <!-- Post -->
+                                <div class="card card-yellow">
+                                    <div class="card-header">
+                                        <h3 class="card-title">TRIP @Model.id</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body" style="background-color:white">
+                                        <div class="row">
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-4">
+                                                        <div class="info-box bg-light">
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text text-center text-muted">Crerate Date </span>
+                                                                <span class="info-box-number text-center text-muted mb-0">05/02/2020</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-4">
+                                                        <div class="info-box bg-light">
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text text-center text-muted">Added by</span>
+                                                                <span class="info-box-number text-center text-muted mb-0">Admin 1</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-4">
+                                                        <div class="info-box bg-light">
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text text-center text-muted">Last modified</span>
+                                                                <span class="info-box-number text-center text-muted mb-0">05/04/2020<span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </br>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="post">
+                                                            <div class="user-block">
+                                                                <img class="img-circle img-bordered-sm" src="~/images/user1.jpg" alt="user image">
+                                                                <span class="username">
+                                                                    <a href="#">@Model.Name @Model.Surname</a>
+                                                                </span>
+                                                                <span class="description">Trip Driver</span>
+                                                            </div>
+                                                            <!-- /.user-block -->
+                                                            <div class="row" style="position:center">
+                                                                <div class="col-3">
+                                                                    <h5 class="headline">PickUp-Town</h5>
+                                                                    <span class="description">@Model.PickUpArea</span>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <h5 class="headline">DropOff-Town </h5>
+                                                                    <span class="description">@Model.DropOffArea</span>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <h5 class="headline">Arrival-Time</h5>
+                                                                    <span class="description">@Model.ArrivalTime</span>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <h5 class="headline">Departure-Time</h5>
+                                                                    <span class="description">@Model.DepartureTime</span>
+                                                                </div>
+                                                            </div>
+                                                            </br>
+                                                           
+                                                            <form asp-action="EditTrip">
+                                                                <a asp-action="EditTrip" asp-route-id="" class="btn btn-warning">Suspend Trip</a>
+                                                                                                                             
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- Post -->
+                                <!-- /.post -->
+                            </div>
+
+                            <!-- /.tab-pane -->
+                        </div>
+                        <!-- /.tab-content -->
+                    </div><!-- /.card-body -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+

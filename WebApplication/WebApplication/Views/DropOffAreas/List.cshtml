@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication.Models.DropOffAreaModel>
+
+@{
+    ViewData["Title"] = "Pick up Area";
+}
+
+<div>
+    <h1 class="display-4">@ViewData["Title"]</h1>
+
+    <p>
+        <a asp-action="Add" class="btn btn-sm btn-success">Create New</a>
+    </p>
+
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.id)</th>
+            <th>@Html.DisplayNameFor(model => model.DropOffArea)</th>
+            <th>@Html.DisplayNameFor(model => model.TimeArrival)</th>
+            <th>@Html.DisplayNameFor(model => model.TimeDepature)</th>
+            <th>@Html.DisplayNameFor(model => model.DriverID)</th>
+
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.DropOffArea</td>
+                <td>@item.TimeArrival</td>
+                <td>@item.TimeDepature</td>
+                <td>@item.DriverID</td>
+                <td style="text-align: center">
+                    <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-sm btn-info">Profile</a>
+                    <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
